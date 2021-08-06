@@ -1,7 +1,15 @@
 <script>
-  import UserHandle from './UserHandle.svelte'
+  import Handle from './Handle.svelte'
 
   export let caption
+  export let postedWhen = '2 HOURS AGO'
+  export let likedBy = [
+    'teamusa',
+    'thenzteam',
+    'teamgb',
+    'nu_sports',
+    'allblacks',
+  ]
 
   let userData = {
     handle: 'thenzteam',
@@ -21,7 +29,7 @@
       <img src={userData.img} alt={'Profile picture of ' + userData.handle} />
     </div>
     <div class="header-rest">
-      <UserHandle handle={userData.handle} />
+      <Handle handle={userData.handle} />
     </div>
   </header>
 
@@ -32,15 +40,38 @@
 
   <!-- Caption and comments -->
   <div>
-    Captions and comments
-    <div>
-      <span class="handle">
-        {userData.handle}
-      </span>
+    <!-- Interaction buttons-->
+    <section class="sec-interact">Icons</section>
+
+    {#if likedBy.length > 0}
+      <!-- Liked by -->
+      <section class="sec-liked-by">
+        <span>Liked by </span>
+        <Handle handle={likedBy[0]} />
+        <span> and </span>
+        <span class="bold">
+          {likedBy.length - 1} other{likedBy.length === 2 ? '' : 's'}
+        </span>
+      </section>
+    {/if}
+
+    <!-- Handle and caption-->
+    <div class="sec-caption">
+      <Handle handle={userData.handle} />
       <span>
         {caption}
       </span>
     </div>
+
+    <div class="sec-posted-when">
+      <!-- TODO: format time properly-->
+      <time>
+        {postedWhen}
+      </time>
+    </div>
+
+    <!-- Add new comment-->
+    <section class="sec-new-comment">New comment</section>
   </div>
 </article>
 
@@ -73,5 +104,34 @@
 
   header > .header-rest {
     margin-left: 14px;
+  }
+
+  .sec-interact {
+    padding: 0 16px;
+    margin-top: 4px;
+  }
+  .sec-liked-by {
+    display: block;
+    padding: 0 16px;
+    margin-bottom: 8px;
+  }
+  .sec-caption {
+    display: block;
+    padding: 0 16px;
+  }
+  .sec-posted-when {
+    padding: 0 16px;
+    font-size: 10px;
+    color: rgba(142, 142, 142, 1);
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+  .sec-new-comment {
+    padding: 0 16px;
+    margin-top: 4px;
+  }
+
+  .bold {
+    font-weight: 600;
   }
 </style>
