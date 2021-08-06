@@ -1,4 +1,7 @@
 <script>
+  import IconHeart from '../Icons/IconHeart.svelte'
+  import IconComment from '../Icons/IconComment.svelte'
+
   import Handle from './Handle.svelte'
 
   export let caption
@@ -10,6 +13,7 @@
     'nu_sports',
     'allblacks',
   ]
+  let liked = false
 
   let userData = {
     handle: 'thenzteam',
@@ -19,6 +23,10 @@
   let imgData = {
     src: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fresources.stuff.co.nz%2Fcontent%2Fdam%2Fimages%2F1%2Fo%2Fo%2F8%2Fh%2Fk%2Fimage.related.StuffLandscapeSixteenByNine.1420x800.1oo7om.png%2F1519932944035.jpg&f=1&nofb=1',
     alt: 'Some alt message',
+  }
+
+  function handleLike() {
+    liked = !liked
   }
 </script>
 
@@ -41,7 +49,19 @@
   <!-- Caption and comments -->
   <div>
     <!-- Interaction buttons-->
-    <section class="sec-interact">Icons</section>
+    <section class="sec-interact">
+      <span style="display: inline-block; margin-left: -8px;">
+        <button on:click={handleLike} class="interact-button">
+          <IconHeart toggle={liked} />
+        </button>
+      </span>
+
+      <span style="display: inline-block;">
+        <button class="interact-button">
+          <IconComment />
+        </button>
+      </span>
+    </section>
 
     {#if likedBy.length > 0}
       <!-- Liked by -->
@@ -106,10 +126,23 @@
     margin-left: 14px;
   }
 
+  .interact-button {
+    border: 0;
+    cursor: pointer;
+    background: 0 0;
+    align-items: center;
+    display: flex;
+    padding: 8px;
+  }
+
   .sec-interact {
     padding: 0 16px;
     margin-top: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
   }
+
   .sec-liked-by {
     display: block;
     padding: 0 16px;

@@ -1,6 +1,6 @@
 <script>
-  import Icon from 'svelte-awesome'
-  import { home, user, heart, compass, comments } from 'svelte-awesome/icons'
+  import IconComment from '../Icons/IconComment.svelte'
+  import IconHome from '../Icons/IconHome.svelte'
 </script>
 
 <nav>
@@ -11,11 +11,12 @@
         <input type="text" placeholder="Search" value="" />
       </div>
       <div class="navIcons">
-        <Icon style="margin-left: 22px;" data={home} scale="1.7" />
-        <Icon style="margin-left: 22px;" data={comments} scale="1.7" />
-        <Icon style="margin-left: 22px;" data={compass} scale="1.7" />
-        <Icon style="margin-left: 22px;" data={heart} scale="1.7" />
-        <Icon style="margin-left: 22px;" data={user} scale="1.7" />
+        <a href="/">
+          <IconHome toggle />
+        </a>
+        <a href="/" style="margin-left: 22px;">
+          <IconComment />
+        </a>
       </div>
     </div>
   </div>
@@ -82,9 +83,5 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-end;
-  }
-
-  .navIcon {
-    margin-left: 22px;
   }
 </style>
