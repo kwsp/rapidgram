@@ -91,7 +91,17 @@
     </div>
 
     <!-- Add new comment-->
-    <section class="sec-new-comment">New comment</section>
+    <section class="sec-new-comment">
+      <form>
+        <textarea
+          aria-label="Add a comment"
+          placeholder="Add a comment..."
+          autocomplete="off"
+          autocorrect="off"
+        />
+        <button type="submit" disabled>Post</button>
+      </form>
+    </section>
   </div>
 </article>
 
@@ -162,6 +172,45 @@
   .sec-new-comment {
     padding: 0 16px;
     margin-top: 4px;
+    border-top: 1px solid rgba(219, 219, 219, 1);
+    min-height: 56px;
+    line-height: 18px;
+    font-size: 14px;
+    justify-content: center;
+  }
+
+  form {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 1;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: stretch;
+    position: relative;
+  }
+
+  form > textarea {
+    background: 0 0;
+    height: 18px;
+    width: 100%;
+    max-height: 80px;
+    border: 0;
+    outline: none;
+    resize: none;
+  }
+
+  form > button {
+    border: 0;
+    color: rgba(0, 149, 246, 1);
+    display: inline;
+    padding: 0;
+    position: relative;
+    background: 0 0;
+    font-weight: 600;
+    text-align: center;
+    user-select: none;
+    width: auto;
+    cursor: pointer;
   }
 
   .bold {
